@@ -107,8 +107,8 @@ Example: DateTimeUtils for date formatting.
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/jk647/taskura_app.git
-cd taskura_app
+git clone https://github.com/jk647/My-Projects.git
+cd My-Projects
 ```
 
 2. **Install dependencies**
