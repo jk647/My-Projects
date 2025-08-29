@@ -358,7 +358,6 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
       _selectedTasks.clear();
     });
     
-    _showSnack('Tasks deleted successfully');
   }
 
   // Show feedback snackbar
