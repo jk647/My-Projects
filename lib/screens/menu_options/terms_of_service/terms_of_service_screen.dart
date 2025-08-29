@@ -43,7 +43,7 @@ class TermsOfServiceScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Last updated: January 15, 2025',
+              'Last updated: August 28, 2025',
               style: GoogleFonts.poppins(
                 color: Colors.white70,
                 fontSize: 14,

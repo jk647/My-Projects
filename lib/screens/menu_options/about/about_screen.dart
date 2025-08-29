@@ -85,7 +85,7 @@ class _AboutScreenState extends State<AboutScreen> {
               child: _buildSectionTitle('About the App'),
             ),
             _buildSectionContent(
-              'Taskura is your intuitive and powerful task management companion, designed to help you organize your life, boost productivity, and achieve your goals. Create, categorize, and track your tasks with ease, all within a simple and elegant interface. Features include multi-selection for bulk operations, attachment support, profile photo management with cropping, and a modern WhatsApp-style UI.',
+              'Taskura is your intuitive and powerful task management companion, designed to help you organize your life, boost productivity, and achieve your goals. Create, categorize, and track your tasks with ease, all within a simple and elegant interface.',
             ),
             const SizedBox(height: 24),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,6 +90,103 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     super.initState();
     _loadCustomCategories();
     _initializeTask();
+  }
+
+  // Check if there are unsaved changes
+  bool _hasUnsavedChanges() {
+    if (_isEditing && widget.existingTask != null) {
+      // For editing, compare with original task
+      final original = widget.existingTask!;
+      return _titleController.text.trim() != original.title ||
+             _descriptionController.text.trim() != original.description ||
+             _selectedCategory != original.tag ||
+             _startDate != original.startDate ||
+             _dueDate != original.dueDate ||
+             _startTime != original.startTime ||
+             _dueTime != original.dueTime ||
+             _estimatedDurationMinutes != original.estimatedDurationMinutes ||
+             _priority != original.priority ||
+             _selectedReminder != (original.reminders.isNotEmpty ? original.reminders.first : 'No reminder') ||
+             _repeatType != original.repeatType ||
+             _repeatConfig != original.repeatConfig ||
+             _repeatEndDate != original.repeatEndDate ||
+             _attachmentPaths.length != original.attachmentPaths.length ||
+             !listEquals(_attachmentPaths, original.attachmentPaths);
+    } else {
+      // For new task, check if any field has been filled
+      return _titleController.text.trim().isNotEmpty ||
+             _descriptionController.text.trim().isNotEmpty ||
+             _selectedCategory != 'Work' ||
+             _startDate != null ||
+             _dueDate != null ||
+             _startTime != null ||
+             _dueTime != null ||
+             _estimatedDurationMinutes != null ||
+             _priority != TaskPriority.medium ||
+             _selectedReminder != 'No reminder' ||
+             _repeatType != TaskRepeatType.none ||
+             _repeatConfig != null ||
+             _repeatEndDate != null ||
+             _attachmentPaths.isNotEmpty;
+    }
+  }
+
+  Future<bool> _showLeaveConfirmation() async {
+    if (!_hasUnsavedChanges()) {
+      return true;
+    }
+
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: Color(0xFFF7DF27), width: 1),
+        ),
+        title: Text(
+          'Leave Without Saving?',
+          style: GoogleFonts.poppins(
+            color: const Color(0xFFF7DF27),
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        content: Text(
+          'You have unsaved changes. Are you sure you want to leave? Your changes will be lost.',
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontSize: 14,
+          ),
+        ),
+        actions: [
+          TapFeedbackHelpers.feedbackTextButton(
+            context: context,
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(
+              'Cancel',
+              style: GoogleFonts.poppins(
+                color: Colors.white70,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          TapFeedbackHelpers.feedbackTextButton(
+            context: context,
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(
+              'Leave',
+              style: GoogleFonts.poppins(
+                color: Colors.red,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    return result ?? false;
   }
 
   // Custom snackbar for user feedback
@@ -530,7 +628,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     return WillPopScope(
       onWillPop: () async {
         FocusScope.of(context).unfocus();
-        return true;
+        return await _showLeaveConfirmation();
       },
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -539,9 +637,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           elevation: 0,
           leading: TapFeedbackHelpers.feedbackIconButton(
             context: context,
-            onPressed: () {
+            onPressed: () async {
               FocusScope.of(context).unfocus();
-              Navigator.pop(context);
+              final shouldLeave = await _showLeaveConfirmation();
+              if (shouldLeave && mounted) {
+                Navigator.pop(context);
+              }
             },
             icon: const Icon(Icons.arrow_back, color: Color(0xFFF7DF27)),
             backgroundColor: Colors.transparent,

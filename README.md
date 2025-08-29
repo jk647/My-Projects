@@ -57,13 +57,13 @@ lib/
 
 - Task creation and management with categories
 - Priority levels (Critical, High, Medium, Low)
-- Date and time scheduling with reminders
-- Recurring tasks (Daily, Weekly, Monthly, Yearly)
+- Date and time scheduling
+- Recurring tasks (Daily, Weekly, Monthly)
 - File attachments (Images, Videos, Audio)
 - Profile photo management with cropping
 - Multi-selection for bulk operations
 - Pin/unpin important tasks
-- Search and filter functionality
+- Search functionality
 - Dark theme with custom tap feedback
 - Local storage with offline support
 - Cross-platform (Android & iOS)
@@ -97,9 +97,17 @@ Example: DateTimeUtils for date formatting.
 
 ## 🚀 Getting Started
 
+### Prerequisites
+- Flutter SDK (3.7.2 or higher)
+- Dart SDK
+- Android Studio / VS Code
+- Android Emulator or Physical Device
+
+### Installation Steps
+
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/taskura_app.git
+git clone https://github.com/jk647/taskura_app.git
 cd taskura_app
 ```
 
@@ -118,7 +126,10 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
-Make sure your device/emulator is connected.
+### Troubleshooting
+- If you encounter build issues, try: `flutter clean && flutter pub get`
+- For Hive adapter issues: `flutter packages pub run build_runner clean && flutter packages pub run build_runner build --delete-conflicting-outputs`
+- Make sure your device/emulator is connected and Flutter is properly configured
 
 ## 📌 Notes
 

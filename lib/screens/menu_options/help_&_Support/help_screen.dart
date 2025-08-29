@@ -78,14 +78,9 @@ class HelpScreen extends StatelessWidget {
               context,
               question: 'How do I pin and unpin tasks?',
               answer:
-                  'To pin a task, long-press on the task to enter selection mode. A yellow action bar will appear at the top with pin and delete options. Tap the pin icon to pin selected tasks. You can select multiple tasks at once for bulk pinning.',
+                  'To pin a task, long-press on the task to enter selection mode. A Grey action bar will appear at the top with pin and delete options. Tap the pin icon to pin selected tasks. You can select multiple tasks at once for bulk pinning.',
             ),
-            _buildFaqItem(
-              context,
-              question: 'How do I select multiple tasks?',
-              answer:
-                  'Long-press on any task to enter selection mode. A yellow action bar will appear at the top showing the number of selected tasks. Tap on other tasks to select them, then use the pin or delete icons in the action bar for bulk operations.',
-            ),
+
             _buildFaqItem(
               context,
               question: 'How do I edit or delete tasks?',
@@ -98,14 +93,9 @@ class HelpScreen extends StatelessWidget {
               context,
               question: 'How do I add attachments to tasks?',
               answer:
-                  'When creating or editing a task, tap the "Add Attachment" button. You can select images, videos, audio files, documents, or other files from your device. To view attachments, tap on the task to open details, then tap on any attachment. Images will open in full screen, videos will play with controls, and audio files will open in a player with play/pause and seek controls.',
+                  'When creating or editing a task, tap the "Add Attachment" button. You can select images, videos, audio files from your device. To view attachments, tap on the task to open details, then tap on any attachment. Images will open in full screen, videos will play with controls, and audio files will open in a player with play/pause and seek controls.',
             ),
-            _buildFaqItem(
-              context,
-              question: 'How do I manage my profile photo?',
-              answer:
-                  'Go to your profile by tapping the profile icon in the top right corner of the home screen. Tap the "Edit" button below your photo, then choose "Choose from Gallery" or "Take a Photo". You can crop and rotate your photo before saving. Tap on your profile photo to preview it in full screen.',
-            ),
+                        
             _buildFaqItem(
               context,
               question: 'Is my data stored online?',
@@ -121,9 +111,6 @@ class HelpScreen extends StatelessWidget {
             ),
             _buildSectionContent(
               '• Multi-Selection: Long-press on any task to enter selection mode. Select multiple tasks and use the action bar to pin or delete them in bulk.',
-            ),
-            _buildSectionContent(
-              '• Managing Notifications: You can enable or disable general app notifications from the "Settings" in the main menu.',
             ),
             _buildSectionContent(
               '• Clearing All Tasks: In the "Settings", you will find an option to "Clear All Tasks". Be careful, as this action is permanent and will delete all your saved tasks.',

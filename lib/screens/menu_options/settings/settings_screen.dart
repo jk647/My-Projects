@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:taskura_app/constants/theme_color.dart';
 import 'package:taskura_app/constants/app_decor.dart';
 import 'package:taskura_app/constants/tap_feedback_helpers.dart';
@@ -19,11 +20,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _notificationsEnabled = true;
   List<String> _customCategories = [];
   String? _currentUserEmail;
+  String _appVersion = 'Loading...';
 
   @override
   void initState() {
     super.initState();
     _loadSettings();
+    _loadAppVersion();
   }
 
   Future<void> _loadSettings() async {
@@ -32,6 +35,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _customCategories =
         prefs.getStringList('customCategories_$_currentUserEmail') ?? [];
     setState(() {});
+  }
+
+  // Load app version from package info
+  Future<void> _loadAppVersion() async {
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      _appVersion = packageInfo.version;
+    });
   }
 
   void _showStyledSnackBar(String msg) {
@@ -300,7 +311,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 20),
           Center(
             child: Text(
-              "App Version 0.1.0",
+              "App Version $_appVersion",
               style: GoogleFonts.poppins(color: Colors.grey, fontSize: 14),
             ),
           ),

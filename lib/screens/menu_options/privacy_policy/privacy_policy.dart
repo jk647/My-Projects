@@ -103,14 +103,14 @@ class PrivacyPolicyScreen extends StatelessWidget {
             Text(
               'Privacy Policy for Taskura',
               style: GoogleFonts.poppins(
-                color: Colors.white,
+                color: AppColors.primaryYellow,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 16),
             Text(
-              'Last updated: January 15, 2025',
+              'Last updated: August 28, 2025',
               style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14),
             ),
             const SizedBox(height: 24),
@@ -129,7 +129,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               '• Personal Identifiable Information (PII): We collect your name (as provided during signup or edited in your profile) and your email address for account management within the App. Your profile picture, if you choose to set one, is stored as a file path on your device, and the image file itself remains on your local storage.',
             ),
             _buildListItem(
-              '• User-Generated Content: This includes tasks you create (title, description, category tag, time, completion status, pinned status, priority level, repeat settings, subtasks, and attachments), custom categories you define, and any feedback you submit through the App. This content is stored locally on your device.',
+              '• User-Generated Content: This includes tasks you create (title, description, category tag, time, completion status, pinned status, priority level, repeat settings, and attachments), custom categories you define, and any feedback you submit through the App. This content is stored locally on your device.',
             ),
             _buildListItem(
               '• Non-Personal Information: The App does not intentionally collect or transmit any non-personal device information (e.g., device model, operating system version, detailed app usage statistics) to external servers.',

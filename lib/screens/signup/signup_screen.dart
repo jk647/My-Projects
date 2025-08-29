@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Map<String, dynamic> allUsers =
         usersJson != null ? jsonDecode(usersJson) : {};
     if (allUsers.containsKey(email)) {
-      _formKey.currentState!.validate();
+      _showSnack("Account already exists with this email", isError: true);
       return;
     }
     
