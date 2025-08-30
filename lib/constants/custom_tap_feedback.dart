@@ -51,7 +51,7 @@ class CustomTapFeedback {
     // Check for problematic areas and adjust position
     final bool isProblematicArea = _isProblematicArea(context);
     final Offset adjustedPosition = isProblematicArea 
-        ? Offset(-100, -100)
+        ? Offset(-1000, -1000)
         : localPosition;
     
     final OverlayEntry entry = OverlayEntry(
